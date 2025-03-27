@@ -15,7 +15,7 @@ const AssinaturaDigital = ({
 
   const limparAssinatura = () => {
     sigRef.current?.clear();
-    setValue(name, ""); // limpa a assinatura do estado também
+    setValue(name, "");
   };
 
   const capturarAssinatura = () => {
