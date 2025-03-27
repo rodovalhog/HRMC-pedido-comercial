@@ -3,9 +3,13 @@
 
 'use client'
 import { useForm } from "react-hook-form";
-import AssinaturaDigital from "./Assinatura";
 import { gerarPDF, Pedido } from "./gerarPedidoPdf";
 import TabelasDeProdutos, { Produto } from "./TableasDeProdutos";
+import dynamic from 'next/dynamic';
+
+const AssinaturaDigital = dynamic(() => import("./Assinatura"), {
+  ssr: false,
+});
 
 const estadosBrasil = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",

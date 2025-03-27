@@ -21,8 +21,9 @@ const AssinaturaDigital = ({
   };
 
   const capturarAssinatura = () => {
-    const imagemBase64 = sigRef.current?.getTrimmedCanvas().toDataURL("image/png");
-    if (imagemBase64) {
+    console.log("sigRef", sigRef)
+    if (sigRef.current && !sigRef.current.isEmpty()) {
+      const imagemBase64 = sigRef.current.getTrimmedCanvas().toDataURL("image/png");
       setValue(name, imagemBase64);
     }
   };
