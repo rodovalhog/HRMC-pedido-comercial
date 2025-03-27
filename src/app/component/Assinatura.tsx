@@ -31,7 +31,7 @@ const AssinaturaDigital = ({
       <SignatureCanvas
         ref={sigRef}
         penColor="black"
-        onEnd={capturarAssinatura} // 👈 Captura automaticamente ao finalizar o traço
+        onEnd={capturarAssinatura}
         canvasProps={{ className: "border rounded-lg w-full md:w-[500px] h-[150px]" }}
       />
       <div className="flex gap-4 mt-2">
