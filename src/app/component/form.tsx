@@ -32,7 +32,7 @@ type FormularioCliente = {
 export default function FormularioCliente() {
   const { register, handleSubmit, setValue, watch } = useForm<Pedido>();
   const x = watch()
-  console.log("x", x)
+  console.log("x >>>", x)
 
   const onSubmit = (data: Pedido) => {
     console.log("Dados do cliente:", data);
