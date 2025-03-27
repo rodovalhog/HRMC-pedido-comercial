@@ -19,7 +19,7 @@ const estadosBrasil = [
 
 type FormularioCliente = {
   estado: string;
-  sr: string;
+  razaoSocial: string;
   endereco: string;
   municipio: string;
   cnpj: string;
@@ -36,11 +36,9 @@ type FormularioCliente = {
 export default function FormularioCliente() {
   const { register, handleSubmit, setValue, watch } = useForm<Pedido>();
   const x = watch()
-  console.log("x >>>", x)
-
+  console.log("x", x)
   const onSubmit = (data: Pedido) => {
     console.log("Dados do cliente:", data);
-    console.log("x", x)
     gerarPDF(data)
   };
 
@@ -48,18 +46,14 @@ export default function FormularioCliente() {
     <form onSubmit={handleSubmit(onSubmit)} className="text-black">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 
+
         <div>
-          <label className="block">Estado:</label>
-          <select {...register("estado")} className="w-full border p-1">
-            <option value="">Selecione um estado</option>
-            {estadosBrasil.map((uf) => (
-              <option key={uf} value={uf}>{uf}</option>
-            ))}
-          </select>
+          <label className="block">CNPJ:</label>
+          <input type="text" {...register("cnpj")} className="w-full border p-1" />
         </div>
         <div>
           <label className="block">Razão Social.:</label>
-          <input type="text" {...register("sr")} className="w-full border p-1" />
+          <input type="text" {...register("razaoSocial")} className="w-full border p-1" />
         </div>
         <div>
           <label className="block">End.:</label>
@@ -70,8 +64,13 @@ export default function FormularioCliente() {
           <input type="text" {...register("municipio")} className="w-full border p-1" />
         </div>
         <div>
-          <label className="block">CNPJ:</label>
-          <input type="text" {...register("cnpj")} className="w-full border p-1" />
+          <label className="block">Estado:</label>
+          <select {...register("estado")} className="w-full border p-1">
+            <option value="">Selecione um estado</option>
+            {estadosBrasil.map((uf) => (
+              <option key={uf} value={uf}>{uf}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block">Email:</label>
