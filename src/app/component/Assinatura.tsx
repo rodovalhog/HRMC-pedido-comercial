@@ -8,7 +8,7 @@ const AssinaturaDigital = ({
   name
 }: {
   title: string;
-  setValue: (campo: string, valor: string) => void;
+  setValue: any
   name: string;
 }) => {
   const sigRef = useRef<SignatureCanvas>(null);
