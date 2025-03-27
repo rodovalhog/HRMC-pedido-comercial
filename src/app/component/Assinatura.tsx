@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
-const AssinaturaDigital = ({ title }: { title: string }) => {
+const AssinaturaDigital = ({ title, setValue, name }: { title: string, setValue: (e: any, x: any) => void, name?: string }) => {
   const sigRef = useRef<SignatureCanvas>(null);
 
   const limparAssinatura = () => {
@@ -12,7 +12,8 @@ const AssinaturaDigital = ({ title }: { title: string }) => {
 
   const salvarAssinatura = () => {
     const imagemBase64 = sigRef.current?.getTrimmedCanvas().toDataURL("image/png");
-    console.log(imagemBase64);
+    console.log("image base", imagemBase64);
+    setValue(name, imagemBase64,)
     // Você pode salvar no backend ou enviar para API
   };
 
@@ -25,8 +26,8 @@ const AssinaturaDigital = ({ title }: { title: string }) => {
         canvasProps={{ className: "border rounded-lg w-full md:w-[500px] h-[150px]" }}
       />
       <div className="flex gap-4 mt-2">
-        <button onClick={limparAssinatura}>Limpar</button>
-        <button onClick={salvarAssinatura}>Salvar</button>
+        <button type="button" onClick={limparAssinatura}>Limpar</button>
+        <button type="button" onClick={salvarAssinatura}>Salvar</button>
       </div>
     </div>
   );

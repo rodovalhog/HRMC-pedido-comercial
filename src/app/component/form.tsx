@@ -24,6 +24,9 @@ type FormularioCliente = {
   telefone: string;
   products: Produto[],
   observacaoGeral: ""
+  assinaturaComprador: "",
+  assinaturaRepresentante: ""
+
 };
 
 export default function FormularioCliente() {
@@ -109,11 +112,11 @@ export default function FormularioCliente() {
 
       <div className="flex flex-col md:flex-row justify-between mt-8 text-sm text-black pt-10">
         <div className="p-4">
-          <AssinaturaDigital title="ASSINATURA COMPRADOR" />
+          <AssinaturaDigital title="ASSINATURA COMPRADOR" setValue={setValue} name="assinaturaComprador" />
         </div>
 
         <div className="p-4">
-          <AssinaturaDigital title="ASSINATURA REPRESENTANTTE" />
+          <AssinaturaDigital title="ASSINATURA REPRESENTANTTE" setValue={setValue} name="assinaturaRepresentante" />
         </div>
       </div>
 
