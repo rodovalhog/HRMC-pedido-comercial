@@ -21,6 +21,8 @@ export default function TabelasDeProdutos({ getValues }: any) {
     setTabelas([...tabelas, tabelas.length]);
   };
 
+  const [grade, setGrade] = useState(34)
+
 
   const [product, setProduct] = useState<Produto[]>([{
     modelo: "",
@@ -114,8 +116,8 @@ export default function TabelasDeProdutos({ getValues }: any) {
                   <th className="border px-2 h-[30px] break-words whitespace-normal">Cor</th>
                   <th className="border px-2 h-[30px] break-words whitespace-normal">Pr. Unit.</th>
                   {[...Array(12).keys()].map((i) => (
-                    <th key={i + 34} className="border px-1 h-[30px] break-words whitespace-normal w-[50px]">
-                      {i + 34}
+                    <th key={i + grade} className="border px-1 h-[30px] break-words whitespace-normal w-[50px]">
+                      {i + grade}
                     </th>
                   ))}
                   <th className="border px-2 h-[30px] break-words whitespace-normal">Quant.</th>
@@ -154,9 +156,9 @@ export default function TabelasDeProdutos({ getValues }: any) {
                   {[...Array(12)].map((_, i) => (
                     <td key={i} className="border h-[30px] break-words whitespace-normal">
                       <input
-                        type="number"
+                        type="tel"
                         name={`numeracao`}
-                        id={String(i + 34)}
+                        id={String(i + grade)}
                         className="w-full min-w-[50px] h-full p-0 m-0 text-center"
                         onChange={(e) => handleChange(e, setProduct, index)}
                       />
