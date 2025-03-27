@@ -1,6 +1,7 @@
 'use client';
-import React, { useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
+
+import React, { useRef } from "react";
 
 const AssinaturaDigital = ({
   title,
