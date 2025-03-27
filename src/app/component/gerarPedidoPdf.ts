@@ -114,7 +114,7 @@ type Produto = {
   valorTotal: number;
 };
 
-type Pedido = {
+export type Pedido = {
   estado: string;
   sr: string;
   endereco: string;
