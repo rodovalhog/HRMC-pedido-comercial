@@ -1,11 +1,10 @@
-//
+
 
 
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { Produto } from "./TableasDeProdutos";
 
-export const gerarPDF = (dados: Produto[]) => {
+export const gerarPDF = (dados: any) => {
   const doc = new jsPDF();
   let y = 20;
 

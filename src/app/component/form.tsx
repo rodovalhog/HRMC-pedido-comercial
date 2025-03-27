@@ -4,7 +4,7 @@
 'use client'
 import { useForm } from "react-hook-form";
 import AssinaturaDigital from "./Assinatura";
-// import { gerarPDF } from "./gerarPedidoPdf";
+import { gerarPDF } from "./gerarPedidoPdf";
 import TabelasDeProdutos, { Produto } from "./TableasDeProdutos";
 
 const estadosBrasil = [
@@ -34,7 +34,7 @@ export default function FormularioCliente() {
   const onSubmit = (data: FormularioCliente) => {
     console.log("Dados do cliente:", data);
     console.log("x", x)
-    // gerarPDF(data)
+    gerarPDF(data)
   };
 
   return (
