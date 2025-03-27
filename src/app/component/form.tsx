@@ -22,7 +22,8 @@ type FormularioCliente = {
   email: string;
   inscricaoEstadual: string;
   telefone: string;
-  products: Produto[]
+  products: Produto[],
+  observacaoGeral: ""
 };
 
 export default function FormularioCliente() {
@@ -89,6 +90,22 @@ export default function FormularioCliente() {
 
 
       <TabelasDeProdutos getValues={setValue} />
+
+      {/* Campo de Observação Geral */}
+      <div className="mb-4 mt-6">
+        <label htmlFor="observacao-geral" className="block text-sm font-medium mb-1">
+          Observações gerais:
+        </label>
+        <textarea
+          id="observacao-geral"
+          rows={4}
+          className="w-full border rounded p-2 text-sm resize-y"
+          placeholder="Digite aqui qualquer observação geral sobre este pedido..."
+          {...register("observacaoGeral")}
+          {...register}
+        />
+      </div>
+
 
       <div className="flex flex-col md:flex-row justify-between mt-8 text-sm text-black pt-10">
         <div className="p-4">

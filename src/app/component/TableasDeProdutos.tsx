@@ -107,103 +107,85 @@ export default function TabelasDeProdutos({ getValues }: any) {
         <div className="mt-6" key={`${index}-grade-numeracao`} >
           <div key={`${index}-numeros-maiores`} className="overflow-x-auto mb-3">
             <h2 className="text-sm font-semibold mb-1">Tabela de Produtos #{index + 1}</h2>
-            <table className="min-w-full border text-center text-xs">
+            <table className="border text-center text-xs whitespace-nowrap">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="border  h-[30px]">Modelo</th>
-                  <th className="border  h-[30px]">Cor</th>
-                  <th className="border  h-[30px]">Pr. Unit.</th>
-
+                  <th className="border px-2 h-[30px] break-words whitespace-normal">Modelo</th>
+                  <th className="border px-2 h-[30px] break-words whitespace-normal">Cor</th>
+                  <th className="border px-2 h-[30px] break-words whitespace-normal">Pr. Unit.</th>
                   {[...Array(12).keys()].map((i) => (
-                    <th key={i + 34} className="border px-1">
+                    <th key={i + 34} className="border px-1 h-[30px] break-words whitespace-normal w-[50px]">
                       {i + 34}
                     </th>
                   ))}
-                  <th className="border  h-[30px]">Quant.</th>
-                  <th className="border  h-[30px]">TOTAL</th>
+                  <th className="border px-2 h-[30px] break-words whitespace-normal">Quant.</th>
+                  <th className="border px-2 h-[30px] break-words whitespace-normal">TOTAL</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-
-                  <td className="border  h-[30px]">
-                    <input type="text" name="modelo" className="w-full h-full p-0 m-0 text-center"
+                  <td className="border h-[30px] break-words whitespace-normal">
+                    <input
+                      type="text"
+                      name="modelo"
+                      className="w-full min-w-[80px] h-full p-0 m-0 text-center"
                       value={product[index]?.modelo ?? ""}
                       onChange={(e) => handleChange(e, setProduct, index)}
                     />
                   </td>
-                  <td className="border  h-[30px]">
-                    <input type="text" name="cor" className="w-full h-full p-0 m-0 text-center"
+                  <td className="border h-[30px] break-words whitespace-normal">
+                    <input
+                      type="text"
+                      name="cor"
+                      className="w-full min-w-[80px] h-full p-0 m-0 text-center"
                       value={product[index]?.cor ?? ""}
-
                       onChange={(e) => handleChange(e, setProduct, index)}
                     />
                   </td>
-                  <td className="border  h-[30px]">
-                    <input type="text" name="precoUnitario" className="w-full h-full p-0 m-0 text-center"
-                      onChange={(e) => handleChange(e, setProduct, index)}
+                  <td className="border h-[30px] break-words whitespace-normal">
+                    <input
+                      type="text"
+                      name="precoUnitario"
+                      className="w-full min-w-[60px] h-full p-0 m-0 text-center"
                       value={product[index]?.precoUnitario ?? ""}
-
+                      onChange={(e) => handleChange(e, setProduct, index)}
                     />
                   </td>
                   {[...Array(12)].map((_, i) => (
-                    <td key={i} className="border h-[30px]">
-                      <input type="text" name={`numeracao`} id={String(i + 34)} className="w-full h-full p-0 m-0 text-center"
-                        // value={product[index]?.numeracao[i]?.quantidade}
-
+                    <td key={i} className="border h-[30px] break-words whitespace-normal">
+                      <input
+                        type="text"
+                        name={`numeracao`}
+                        id={String(i + 34)}
+                        className="w-full min-w-[50px] h-full p-0 m-0 text-center"
                         onChange={(e) => handleChange(e, setProduct, index)}
                       />
                     </td>
                   ))}
-                  <td className="border  h-[30px]">
-                    <input type="text" name="quantidade" className="w-full h-full p-0 m-0 text-center"
+                  <td className="border h-[30px] break-words whitespace-normal">
+                    <input
+                      type="text"
+                      name="quantidade"
+                      className="w-full min-w-[60px] h-full p-0 m-0 text-center"
                       value={product[index]?.quantidade ?? ""}
                       onChange={() => null}
                     />
                   </td>
-
-                  <td className="border  h-[30px]">
-                    <input type="text" name="valorTotal" className="w-full h-full p-0 m-0 text-center"
-                      onChange={() => null}
+                  <td className="border h-[30px] break-words whitespace-normal">
+                    <input
+                      type="text"
+                      name="valorTotal"
+                      className="w-full min-w-[80px] h-full p-0 m-0 text-center"
                       value={String(product[index]?.valorTotal) ?? ""}
-
+                      onChange={() => null}
                     />
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="overflow-x-auto mt-1 text-black" key={`${index + 10}-numeros-menores`} >
-            <table className="min-w-full border text-center text-xs">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="border  h-[30px]">Modelo</th>
-                  <th className="border  h-[30px]">Cor</th>
-                  {[...Array(16).keys()].map(i => (
-                    <th key={i + 20} className="border px-1">{i + 20}</th>
-                  ))}
-                  <th className="border  h-[30px]">Quant.</th>
 
-                  <th className="border  h-[30px]">Pr. Unit.</th>
-                  <th className="border  h-[30px]">TOTAL</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Linha de exemplo */}
-                <tr>
-                  <td className="border  h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
-                  <td className="border  h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
-                  {[...Array(16)].map((_, i) => (
-                    <td key={i} className="border h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
-                  ))}
-                  <td className="border  h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
 
-                  <td className="border  h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
-                  <td className="border  h-[30px]"><input type="text" className="w-full h-full p-0 m-0 text-center" /></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
 
       ))}
