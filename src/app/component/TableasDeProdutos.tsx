@@ -144,7 +144,7 @@ export default function TabelasDeProdutos({ getValues }: any) {
                   </td>
                   <td className="border h-[30px] break-words whitespace-normal">
                     <input
-                      type="text"
+                      type="number"
                       name="precoUnitario"
                       className="w-full min-w-[60px] h-full p-0 m-0 text-center"
                       value={product[index]?.precoUnitario ?? ""}
@@ -154,7 +154,7 @@ export default function TabelasDeProdutos({ getValues }: any) {
                   {[...Array(12)].map((_, i) => (
                     <td key={i} className="border h-[30px] break-words whitespace-normal">
                       <input
-                        type="text"
+                        type="number"
                         name={`numeracao`}
                         id={String(i + 34)}
                         className="w-full min-w-[50px] h-full p-0 m-0 text-center"
@@ -164,7 +164,7 @@ export default function TabelasDeProdutos({ getValues }: any) {
                   ))}
                   <td className="border h-[30px] break-words whitespace-normal">
                     <input
-                      type="text"
+                      type="number"
                       name="quantidade"
                       className="w-full min-w-[60px] h-full p-0 m-0 text-center"
                       value={product[index]?.quantidade ?? ""}
@@ -197,6 +197,13 @@ export default function TabelasDeProdutos({ getValues }: any) {
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
         >
           + Adicionar Grade Aduto
+        </button>
+        <button
+          type="button"
+          onClick={adicionarTabela}
+          className="bg-yellow-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+        >
+          + Adicionar Grade Infantil
         </button>
       </div>
     </div>
