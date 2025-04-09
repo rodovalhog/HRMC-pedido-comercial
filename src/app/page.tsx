@@ -13,7 +13,7 @@ export default function Page() {
 }
 
 
-const WrapperStep = ({ children, contentHeader, contentFooter }: { children: ReactNode, contentHeader?: any, contentFooter?: any }) => {
+const WrapperStep = ({ children, contentHeader }: { children: ReactNode, contentHeader?: any, contentFooter?: any }) => {
   return (<div className='flex flex-col min-h-screen md:container mx-auto'>
     {!contentHeader && (<header className="bg-blue-700  fixed top-0 left-0 w-full h-16  shadow z-50 h-[100px]">
       <div className='max-w-7xl mx-auto px-4 flex items-center h-full font-bold text-2xl tracking-wide'>
