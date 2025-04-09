@@ -43,11 +43,13 @@ export const FormStepPages = () => {
     1: <CadastroCliente />,
     2: <GradeNumeracao />,
     3: <PaymentForm />,
-    4: <UploadImageLogo />,
-    5: <AssinaturaClient />,
-    6: <AssinaturaRepresentante />
+    // 4: <UploadImageLogo />,
+    // 5: <AssinaturaClient />,
+    // 6: <AssinaturaRepresentante />
   }
 
+  const w = methods.watch()
+  console.log("w", JSON.stringify(w))
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="p-4 flex flex-col justify-between ">

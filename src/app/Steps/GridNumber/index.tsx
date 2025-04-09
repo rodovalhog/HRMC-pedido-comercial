@@ -6,7 +6,7 @@ import { Trash2 } from 'lucide-react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
 const tamanhos = {
-  infantil: [28, 29, 30, 31, 32, 33],
+  infantil: [28, 29, 30, 31, 30, 33],
   adulto: [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45],
 };
 
@@ -68,7 +68,7 @@ export function GradeNumeracao() {
             />
 
             <div className="flex flex-wrap gap-2 mb-4 text-black">
-              <div className='flex flex-col w-[32%] '>
+              <div className='flex flex-col w-[30%] '>
                 Modelo:
                 <input
                   type="text"
@@ -77,7 +77,7 @@ export function GradeNumeracao() {
                   {...register(`produtos.${index}.modelo`)}
                 />
               </div>
-              <div className='flex flex-col w-[32%]'>
+              <div className='flex flex-col w-[30%]'>
                 Valor:
                 <input
                   type="text"
@@ -86,7 +86,7 @@ export function GradeNumeracao() {
                   {...register(`produtos.${index}.cor`)}
                 />
               </div>
-              <div className='flex flex-col w-[32%]'>
+              <div className='flex flex-col w-[30%]'>
                 Preço:
                 <input
                   type="number"
