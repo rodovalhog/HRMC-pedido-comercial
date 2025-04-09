@@ -53,7 +53,7 @@ export const FormStepPages = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)} className="p-4 flex flex-col justify-between ">
         {steps[currentStep] ?? <p className='text-red-600'>Não tem mais etapa</p>}
 
-        <div className="fixed bottom-[110px] left-0 right-0 bg-white p-4 shadow-md z-10">
+        <div className="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-md z-10">
           <div className="flex gap-4">
             {currentStep !== 1 && <button
 
