@@ -34,9 +34,7 @@ type FormularioCliente = {
 };
 
 export default function FormularioCliente() {
-  const { register, handleSubmit, setValue, watch } = useForm<Pedido>();
-  const x = watch()
-  console.log("x", x)
+  const { register, handleSubmit, setValue } = useForm<Pedido>();
   const onSubmit = (data: Pedido) => {
     console.log("Dados do cliente:", data);
     gerarPDF(data)
@@ -115,11 +113,11 @@ export default function FormularioCliente() {
 
       <div className="flex flex-col md:flex-row justify-between mt-8 text-sm text-black pt-10">
         <div className="p-4">
-          <AssinaturaDigital title="ASSINATURA COMPRADOR" setValue={setValue} name="assinaturaComprador" />
+          <AssinaturaDigital title="ASSINATURA COMPRADOR" name="assinaturaComprador" />
         </div>
 
         <div className="p-4">
-          <AssinaturaDigital title="ASSINATURA REPRESENTANTTE" setValue={setValue} name="assinaturaRepresentante" />
+          <AssinaturaDigital title="ASSINATURA REPRESENTANTTE" name="assinaturaRepresentante" />
         </div>
       </div>
       já esta em prodx
