@@ -3,7 +3,7 @@
 'use client';
 
 import { Trash2 } from 'lucide-react';
-import { useFormContext, useFieldArray } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
 const tamanhos = {
   infantil: [28, 29, 30, 31, 30, 33],
@@ -78,7 +78,7 @@ export function GradeNumeracao() {
                 />
               </div>
               <div className='flex flex-col w-[30%]'>
-                Valor:
+                Cor:
                 <input
                   type="text"
                   placeholder="Cor:"
