@@ -1,0 +1,76 @@
+// {
+//   "workbench.colorTheme": "Moonlight II",
+//   "editor.fontFamily": "Dank Mono, Menlo, Monaco, 'Courier New'",
+//   "editor.fontLigatures": true,
+//   "editor.rulers": [
+//     60,
+//     80,
+//     120
+//   ],
+//   "prettier.printWidth": 120,
+//   "editor.defaultFormatter": "esbenp.prettier-vscode",
+//   "editor.fontSize": 18,
+//   "editor.tabSize": 2,
+//   "editor.minimap.enabled": false,
+//   "terminal.integrated.fontSize": 22,
+//   "[Log]": {
+//     "editor.fontSize": 14
+//   },
+//   "editor.inlineSuggest.enabled": true,
+//   "editor.formatOnSave": true,
+//   "editor.codeActionsOnSave": {
+//     "source.organizeImports": "explicit"
+//   },
+//   "[javascript]": {
+//     "editor.defaultFormatter": "esbenp.prettier-vscode"
+//   },
+//   "tailwindCSS.includeLanguages": {
+//     "html": "html",
+//     "javascript": "javascript",
+//     "css": "css"
+//   },
+//   "editor.quickSuggestions": {
+//     "strings": true
+//   },
+//   "editor.unicodeHighlight.ambiguousCharacters": false,
+//   "liveServer.settings.donotShowInfoMsg": true,
+//   "workbench.startupEditor": "none",
+//   "turboConsoleLog.addSemicolonInTheEnd": true,
+//   "turboConsoleLog.includeFileNameAndLineNum": false,
+//   "turboConsoleLog.insertEnclosingClass": false,
+//   "turboConsoleLog.insertEnclosingFunction": false,
+//   "turboConsoleLog.logMessagePrefix": "🟨 ***",
+//   "git.autofetch": true,
+//   "extensions.autoCheckUpdates": false,
+//   "extensions.autoUpdate": "onlySelectedExtensions",
+//   "update.mode": "none"
+// }
+
+
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "eslint.format.enable": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "turboConsoleLog.wrapLogMessage": true,
+  "turboConsoleLog.includeFileNameAndLineNum": true,
+  "turboConsoleLog.insertEmptyLineAfterLogMessage": true,
+  "turboConsoleLog.insertEmptyLineBeforeLogMessage": true,
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
+}

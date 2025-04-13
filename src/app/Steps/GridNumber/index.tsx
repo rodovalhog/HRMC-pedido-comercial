@@ -35,7 +35,7 @@ export function GradeNumeracao() {
   };
 
   return (
-    <div className="min-h-screen p-2 bg-white mb-12">
+    <div className=" p-2 bg-white mb-12">
       <h1 className="text-xl font-bold mb-4 text-black">Adicione a Grade de Numeração</h1>
 
       {fields.map((grade: any, index) => {
