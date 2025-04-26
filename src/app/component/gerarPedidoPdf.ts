@@ -127,7 +127,7 @@ export const gerarPDF = (dados: any) => {
   doc.addImage(imageLogoClient, "PNG", 20, y, 60, 30);
 
   y += 40;
-  doc.text(`Observaçõwa: ${observacoesLogo}`, 20, y);
+  doc.text(`Observações: ${observacoesLogo}`, 20, y);
 
 
   y += 10
