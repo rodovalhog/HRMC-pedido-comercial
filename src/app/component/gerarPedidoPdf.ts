@@ -152,7 +152,7 @@ export const gerarPDF = (dados: any) => {
     Object.entries(produto?.quantidades).forEach(([tamanho, qtd]: any) => {
       if (!Number.isNaN(qtd)) {
         y += 6;
-        doc.text(`Nº : ${tamanho} Qnt: ${qtd} altura`, 20, y);
+        doc.text(`Nº : ${tamanho} Qnt: ${qtd}`, 20, y);
       }
       if (Number(y) >= 270) {
         doc.addPage();
