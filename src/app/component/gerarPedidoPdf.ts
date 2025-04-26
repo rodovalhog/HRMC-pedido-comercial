@@ -168,12 +168,12 @@ export const gerarPDF = (dados: any) => {
     y += 6;
 
   })
-
+  doc.setFontSize(14);
   doc.text(`Total de pares ${quantidadeTotalDeTodosPedido}`, 20, y);
   y += 6;
 
   doc.text(`Total total da compra ${valorTotalDeTodosPedido}`, 20, y);
-
+  doc.setFontSize(12);
   if (y >= Number(270)) {
 
     doc.addPage();
