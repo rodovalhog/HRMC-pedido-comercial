@@ -1,5 +1,4 @@
 import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
 
 type Numeracao = {
   numero: number;
@@ -29,7 +28,35 @@ export type Pedido = {
   assinaturaRepresentante: any
   assinaturaComprador: any
 };
-export const gerarPDF = (dados: Pedido) => {
+export const gerarPDF = (dados: any) => {
+  const {
+    cnpj,
+    razaoSocial,
+    inscricaoEstadual,
+    municipio,
+    email,
+    telefone,
+    uf,
+    endereco,
+    paymentTypes,
+    cardType,
+    avistaType: pagamentoAvista,
+    boletoCondition: condicaoBoleto,
+    installments: parcelaCartaoCredito,
+    observations,
+    imageLogoClient,
+    observacoesLogo,
+    produtos,
+    assinaturaRepresentante,
+    assinaturaCliente,
+  } = dados
+
+
+
+
+
+
+
   const doc = new jsPDF();
   let y = 20;
 
@@ -39,85 +66,134 @@ export const gerarPDF = (dados: Pedido) => {
   y += 10;
 
   // Dados do cliente
-  const infoGeral = [
-    ["Estado", dados.estado],
-    ["Razão Social", dados.razaoSocial],
-    ["Endereço", dados.endereco],
-    ["Município", dados.municipio],
-    ["CNPJ", dados.cnpj],
-    ["Email", dados.email],
-    ["Inscrição Estadual", dados.inscricaoEstadual],
-    ["Telefone", dados.telefone],
+  const infoCliente = [
+    ["Razão Social", razaoSocial],
+    ["CNPJ", cnpj],
+    ["Inscrição Estadual", inscricaoEstadual],
+    ["Telefone", telefone],
+    ["Email", email],
+    ["Endereço", endereco],
+    ["Município", municipio],
+    ["Estado", uf],
   ];
 
-  infoGeral.forEach(([label, value]) => {
+
+  infoCliente.forEach(([label, value]) => {
     doc.setFontSize(12);
     doc.text(`${label}: ${value}`, 20, y);
     y += 7;
   });
 
-  // Observações
-  if (dados.observacaoGeral) {
-    y += 5;
-    doc.setFontSize(12);
-    doc.text("Observações:", 20, y);
-    y += 6;
-    doc.setFontSize(11);
-    doc.text(dados.observacaoGeral, 20, y);
-    y += 10;
+
+  y += 7;
+  doc.text("Condições de Pagamento:", 20, y);
+  if (pagamentoAvista) {
+    y += 7;
+    doc.text(`Pagamento à vista: no ${pagamentoAvista}`, 20, y);
   }
 
-  // Produtos
-  dados.products.forEach((produto, idx) => {
+  if (parcelaCartaoCredito && cardType == 'credito') {
+    y += 7;
+    doc.text(`Pagamento cartão de credito em : ${parcelaCartaoCredito}x`, 20, y);
+  } else {
+    y += 7;
+
+    doc.text(`Pagamento cartão de ${cardType}`, 20, y);
+
+  }
+
+  if (condicaoBoleto) {
+    y += 7;
+
+    const cheque = paymentTypes.some((item: string) => item === "Cheque")
+    const boleto = paymentTypes.some((item: string) => item === "Boleto")
+    if (cheque) {
+      y += 7;
+      doc.text(`Pagamento no cheque: ${condicaoBoleto.replaceAll('_', ', ')}`, 20, y);
+    }
+    if (boleto) {
+      y += 7;
+      doc.text(`Pagamento no boleto: ${condicaoBoleto.replaceAll('_', ', ')}`, 20, y);
+    }
+  }
+  if (observations) {
+    y += 7;
+    doc.text(`Observação: ${observations}`, 20, y);
+  }
+
+  y += 7;
+  doc.text("Logo Cliente:", 20, y);
+  y += 7;
+  doc.addImage(imageLogoClient, "PNG", 20, y, 60, 30);
+
+  y += 40;
+  doc.text(`Observaçõwa: ${observacoesLogo}`, 20, y);
+
+
+  y += 10
+  doc.text("Produtos:", 20, y);
+  let valorTotalDeTodosPedido = 0
+  let quantidadeTotalDeTodosPedido = 0
+  produtos.forEach((produto: any) => {
+    const quantidades = produto?.quantidades || {};
+
+    const valorUnitario = Number(produto?.valor || 0);
+    const total = Object.values(quantidades || {}).reduce((sum: number, q: any) => sum + Number(q || 0), 0);
+
+    const valorTotal = total * valorUnitario;
+
     doc.setFontSize(13);
-    doc.text(`Produto ${idx + 1}: ${produto.modelo}`, 20, y);
     y += 6;
-    doc.setFontSize(11);
-    doc.text(`Cor: ${produto.cor}`, 20, y);
-    doc.text(`Preço Unitário: R$ ${produto.precoUnitario}`, 80, y);
-    doc.text(`Quantidade: ${produto.quantidade}`, 140, y);
+
+    doc.text(`Modelo: ${produto.modelo} ${produto.tipo} cor: ${produto.cor} valor: ${produto.valor}`, 20, y);
     y += 6;
-    doc.text(`Valor Total: R$ ${produto.valorTotal}`, 20, y);
-    y += 8;
 
-    autoTable(doc, {
-      startY: y,
-      head: [["Numeração", "Quantidade"]],
-      body: produto.numeracao.map((n) => [n.numero.toString(), n.quantidade.toString()]),
-      margin: { left: 20, right: 20 },
-      styles: { fontSize: 10 },
-    });
+    doc.text("Grade:", 20, y);
+    Object.entries(produto?.quantidades).forEach(([tamanho, qtd]: any) => {
+      if (!Number.isNaN(qtd)) {
+        y += 6;
+        doc.text(`Nº : ${tamanho} Qnt: ${qtd} altura`, 20, y);
+      }
+      if (Number(y) >= 270) {
+        doc.addPage();
+        y = 20
+      }
 
-    y = (doc as any).lastAutoTable.finalY + 10;
+    })
+    y += 6;
+    doc.text(` Quantidades : ${total}  Valor total: ${valorTotal}`, 20, y);
+    quantidadeTotalDeTodosPedido += total
+    valorTotalDeTodosPedido += valorTotal
 
-    if (y > 250) {
-      doc.addPage();
-      y = 20;
-    }
-  });
+    y += 6;
 
-  // Assinaturas lado a lado
-  if (dados.assinaturaRepresentante || dados.assinaturaComprador) {
-    if (y > 230) {
-      doc.addPage();
-      y = 20;
-    }
+  })
 
-    doc.setFontSize(12);
-    doc.text("Assinatura do Representante", 20, y);
-    doc.text("Assinatura do Comprador", 120, y);
-    y += 5;
+  doc.text(`Total de pares ${quantidadeTotalDeTodosPedido}`, 20, y);
+  y += 6;
 
-    if (dados.assinaturaRepresentante) {
-      doc.addImage(dados.assinaturaRepresentante, "PNG", 20, y, 60, 30);
-    }
+  doc.text(`Total total da compra ${valorTotalDeTodosPedido}`, 20, y);
 
-    if (dados.assinaturaComprador) {
-      doc.addImage(dados.assinaturaComprador, "PNG", 120, y, 60, 30);
-    }
+  if (y >= Number(270)) {
 
-    y += 40;
+    doc.addPage();
+    y = 20
   }
+  y += 20;
+  if (assinaturaRepresentante || assinaturaCliente) {
+    doc.text(`Assinatura representate`, 20, y);
+    doc.text(`Assinatura Cliente `, 100, y);
+
+    y += 4;
+    doc.addImage(assinaturaRepresentante, "PNG", 20, y, 60, 30);
+    doc.addImage(assinaturaCliente, "PNG", 100, y, 60, 30);
+
+  }
+  if (Number(y) >= 270) {
+    doc.addPage();
+    y = 20
+  }
+
 
   doc.save("pedido.pdf");
 };

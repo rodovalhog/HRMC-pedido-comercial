@@ -7,7 +7,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 const tamanhos = {
   infantil: [28, 29, 30, 31, 30, 33],
-  adulto: [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45],
+  adulto: [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
 };
 
 export function GradeNumeracao() {
@@ -99,8 +99,8 @@ export function GradeNumeracao() {
             </div>
 
             <div className="grid grid-cols-4 gap-2 mb-4 text-black">
-              {tamanhos[grade.tipo as 'infantil' | 'adulto'].map((num) => (
-                <div key={num} className="flex flex-col items-center">
+              {tamanhos[grade.tipo as 'infantil' | 'adulto'].map((num, key) => (
+                <div key={key} className="flex flex-col items-center">
                   <div className="bg-blue-500 flex w-full justify-center border rounded-md mb-1">
                     <label className="text-sm font-medium mb-1 text-white">
                       {num}

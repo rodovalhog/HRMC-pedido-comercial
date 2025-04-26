@@ -51,7 +51,7 @@ export function UploadImageLogo({ name = 'imageLogoClient' }: Props) {
         )}
 
       </div>
-      <Observation name='observacoes' />,
+      <Observation name='observacoesLogo' />,
 
     </>
   );

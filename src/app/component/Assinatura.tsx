@@ -53,10 +53,10 @@
 
 'use client';
 
-import SignatureCanvas from "react-signature-canvas";
-import React, { useRef } from "react";
-import { useFormContext } from "react-hook-form";
 import Image from "next/image";
+import { useRef, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import SignatureCanvas from "react-signature-canvas";
 
 type AssinaturaDigitalProps = {
   title: string;
@@ -66,7 +66,7 @@ type AssinaturaDigitalProps = {
 const AssinaturaDigital = ({ title, name }: AssinaturaDigitalProps) => {
   const { setValue, register, watch } = useFormContext();
   const sigRef = useRef<SignatureCanvas>(null);
-
+  const [assinar, setAssinar] = useState(false)
   const limparAssinatura = () => {
     sigRef.current?.clear();
     setValue(name, "");
@@ -86,27 +86,35 @@ const AssinaturaDigital = ({ title, name }: AssinaturaDigitalProps) => {
   return (
     <div className="flex flex-col items-center gap-2 w-full text-black">
       <h2 className="font-bold text-lg">{title}</h2>
+      {assinar && (<>
+        <input type="hidden" {...register(name)} />
 
-      <input type="hidden" {...register(name)} />
+        <SignatureCanvas
+          ref={sigRef}
+          penColor="black"
+          onEnd={capturarAssinatura}
+          canvasProps={{
+            className: "border rounded-lg w-full md:w-[500px] h-[60vh] ",
+          }}
+        />
 
-      {!imagemSalva && <SignatureCanvas
-        ref={sigRef}
-        penColor="black"
-        onEnd={capturarAssinatura}
-        canvasProps={{
-          className: "border rounded-lg w-full md:w-[500px] h-[60vh] ",
-        }}
-      />
-      }
+
+      </>)}
       <div className="flex gap-4 mt-2">
-        <button
+        {imagemSalva && <button
           type="button"
           onClick={limparAssinatura}
           className="bg-red-500 text-white px-4 py-2 rounded"
         >
           Limpar
-        </button>
+        </button>}
+        {!imagemSalva && (<button
+          type="button"
+          onClick={() => setAssinar(true)}
+          className="bg-green-500 text-white px-8 py-2 rounded"
+        >Assinar</button>)}
       </div>
+
 
       {imagemSalva && (
         <div className="mt-4">

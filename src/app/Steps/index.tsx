@@ -1,6 +1,10 @@
+
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ReactNode, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { gerarPDF } from '../component/gerarPedidoPdf';
 import { AssinaturaClient } from './AssinaturaClient';
 import { AssinaturaRepresentante } from './AssinaturaRepresentante';
 import { PaymentForm } from './CondicaoPagamento';
@@ -50,14 +54,15 @@ export const FormStepPages = () => {
     7: <ResumoPedido />
   }
 
-  const w = methods.watch()
-  console.log("w", JSON.stringify(w))
+  const lastStep = currentStep === 7
+  const labelLastStep = lastStep ? "Gerar Pedido" : "Continuar"
+  const dados = methods.watch()
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="p-4 flex flex-col justify-between ">
         {steps[currentStep] ?? <p className='text-red-600'>Não tem mais etapa</p>}
 
-        <div className="bg-white p-4 shadow-md z-10">
+        <div className="bg-white p-4 shadow-md z-10 absolute bottom-0 left-0 w-full">
           <div className="flex gap-4">
             {currentStep !== 1 && <button
 
@@ -75,22 +80,15 @@ export const FormStepPages = () => {
             <button
               type="button"
               onClick={() => {
-                nextStep()
+                lastStep ? gerarPDF(dados) : nextStep()
               }}
-              className="flex-1 bg-green-500 text-white p-3 rounded-md font-bold">
-              <p className='flex gap-4  justify-center'>Continuar
+              className={`flex-1 text-white p-3 rounded-md font-bold ${lastStep ? 'bg-blue-400' : 'bg-green-500'}`}>
+              <p className='flex  justify-center'>{labelLastStep}
                 <ArrowRight />
               </p>
             </button>
           </div>
         </div>
-
-        {/* <button
-          type="submit"
-          className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition"
-        >
-          Continuar
-        </button> */}
       </form>
     </FormProvider>
   );
